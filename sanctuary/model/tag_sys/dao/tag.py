@@ -2,7 +2,7 @@
 
 import datetime
 
-from peewee import *
+from peewee import Model, SmallIntegerField, CharField, DateTimeField
 from gear.config import mysql_db
 
 
