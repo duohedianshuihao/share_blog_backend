@@ -2,10 +2,12 @@ CREATE TABLE `article_tag` (
     `id` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
     `article_id` smallint(5) unsigned NOT NULL,
     `tag_text` varchar(100) NOT NULL,
+    `tag_hash` int(16) NOT NULL,
     `create_time` datetime DEFAULT NULL,
     `update_time` datetime DEFAULT NULL,
     PRIMARY KEY (`id`),
-    KEY `article_id` (`article_id`)
+    KEY `idx_article_id` (`article_id`),
+    KEY `idx_tag_hash` (`tag_hash`)
 );
 
 
@@ -13,10 +15,12 @@ CREATE TABLE `article_category` (
     `id` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
     `article_id` smallint(5) unsigned NOT NULL,
     `category_text` varchar(100) NOT NULL,
+    `category_hash` int(16) NOT NULL,
     `create_time` datetime DEFAULT NULL,
     `update_time` datetime DEFAULT NULL,
     PRIMARY KEY (`id`),
-    KEY `article_id` (`article_id`)
+    KEY `idx_article_id` (`article_id`),
+    KEY `idx_category_hash` (`category_hash`)
 );
 
 

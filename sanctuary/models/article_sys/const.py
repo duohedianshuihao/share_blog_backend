@@ -3,5 +3,5 @@
 
 class ArticleStatus():
     on_edit = 0
-    publishing = 1
+    published = 1
     delete = 2

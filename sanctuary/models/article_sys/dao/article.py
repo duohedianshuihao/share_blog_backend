@@ -23,7 +23,8 @@ class ArticleDAO(Model):
 
     @classmethod
     def create_article(cls, title, content, status):
-        return cls(title=title, content=content, status=status).save()
+        '''content is a dict'''
+        return cls.create(title=title, content=content, status=status)  # cls.().save() in peewee dont reture dao but only int
 
     @classmethod
     def get_article_detail(cls, id):
