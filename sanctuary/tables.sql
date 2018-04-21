@@ -8,7 +8,7 @@ CREATE TABLE `article_tag` (
     PRIMARY KEY (`id`),
     KEY `idx_article_id` (`article_id`),
     KEY `idx_tag_hash` (`tag_hash`)
-);
+) DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
 CREATE TABLE `article_category` (
@@ -21,7 +21,7 @@ CREATE TABLE `article_category` (
     PRIMARY KEY (`id`),
     KEY `idx_article_id` (`article_id`),
     KEY `idx_category_hash` (`category_hash`)
-);
+) DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
 CREATE TABLE `article` (
@@ -33,4 +33,4 @@ CREATE TABLE `article` (
     `create_time` datetime DEFAULT NULL,
     `update_time` datetime DEFAULT NULL,
     PRIMARY KEY (`id`)
-);
+) DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
