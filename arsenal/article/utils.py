@@ -13,7 +13,7 @@ def get_hashed_value(string):
     return int(hashlib.sha256(string).hexdigest(), 16) % (10 ** 16)
 
 
-def _para_para(text):
+def _dump_para(text):
     md = misaka.Markdown(
         # skip-html - 跳过原文中的 HTML 代码
         # hard-wrap - 每个 \n 都渲染为 <br>
@@ -24,6 +24,6 @@ def _para_para(text):
 
     return {
         'type': 'text',
-        'text': desc_text,
-        'html': md(desc_text)
+        'text': text,
+        'html': md(text)
     }
