@@ -1,6 +1,5 @@
 # coding: utf-8
 
-from houdini import h
 from misaka import HtmlRenderer
 from pygments import highlight
 from pygments.formatters import HtmlFormatter, ClassNotFound
@@ -21,7 +20,7 @@ class ArticleRenderer(HtmlRenderer):
             formatter = HtmlFormatter()
             return highlight(text, lang, formatter)
 
-        return "\n<pre><code>{}</code></pre>\n".format(h.escape_html(text.strip()))
+        return "\n<pre><code>{}</code></pre>\n".format(text.strip())
 
     def blockquote(self, content):
         return "<blockquote>{}</blockquote>".format(content.strip())

@@ -2,7 +2,7 @@
 
 import datetime
 
-from peewee import Model, IntegerField, SmallIntegerField, CharField, DateTimeField, fn
+from peewee import Model, BigIntegerField, SmallIntegerField, CharField, DateTimeField, fn
 from gear.config import mysql_db
 from arsenal.article.utils import get_hashed_value
 
@@ -15,7 +15,7 @@ class CategoryDAO(Model):
     id = SmallIntegerField(5)
     article_id = SmallIntegerField(5)
     category_text = CharField(100)
-    category_hash = IntegerField(16)
+    category_hash = BigIntegerField(16)
     create_time = DateTimeField(default=datetime.datetime.now)
     update_time = DateTimeField(default=datetime.datetime.now)
 

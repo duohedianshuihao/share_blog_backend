@@ -54,7 +54,7 @@ class ArticleDAO(Model):
 
     @classmethod
     def update_n_read(cls, id):
-        return cls.update(n_read=cls.n_read + 1).where(cls.id == id).execute()
+        return cls.update(n_read=cls.n_read + 1).where(cls.id == id).execute()  # to avoid update at the same time
 
     @classmethod
     def paged_articles(cls, cursor, size):

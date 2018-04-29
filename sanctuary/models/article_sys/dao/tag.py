@@ -2,7 +2,7 @@
 
 import datetime
 
-from peewee import Model, IntegerField, SmallIntegerField, CharField, DateTimeField, fn
+from peewee import Model, BigIntegerField, SmallIntegerField, CharField, DateTimeField, fn
 from gear.config import mysql_db
 from arsenal.article.utils import get_hashed_value
 
@@ -15,7 +15,7 @@ class TagDAO(Model):
     id = SmallIntegerField(5)
     article_id = SmallIntegerField(5)
     tag_text = CharField(100)
-    tag_hash = IntegerField(16)
+    tag_hash = BigIntegerField(16)
     create_time = DateTimeField(default=datetime.datetime.now)
     update_time = DateTimeField(default=datetime.datetime.now)
 
@@ -29,7 +29,6 @@ class TagDAO(Model):
         with cls._meta.database.atomic():
             for data_dict in data:
                 daos.append(cls.get_or_create(**data_dict))
-        print daos
         return daos
 
     @classmethod

@@ -1,6 +1,6 @@
 # coding: utf-8
 
-import hashlib
+from hashlib import md5
 import misaka
 
 from ..utils.markdown_utils import ArticleRenderer
@@ -10,7 +10,7 @@ def get_hashed_value(string):
     '''
     @rtype: int value with length of 16
     '''
-    return int(hashlib.sha256(string).hexdigest(), 16) % (10 ** 16)
+    return int(md5(string).hexdigest(), 16) % (10 ** 16)
 
 
 def _dump_para(text):
