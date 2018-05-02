@@ -8,7 +8,7 @@ from gear.config import mysql_db
 
 
 class UserAuthDAO(Model):
-    class Meta():
+    class Meta:
         database = mysql_db
         table_name = 'user_auth'
 
@@ -20,15 +20,22 @@ class UserAuthDAO(Model):
 
     @classmethod
     def create_auth(cls, email, password):
-        email = email.strip().lower()
         if not cls._check_available_email(email):
-            raise EmailAlreadyUsed
-        password = hash_password(password)
-        return cls.create(email=email, password=password)
+            raise EmailAlreadyUsed  # view layer receive this exception
+        dao = cls.create(email=email)
+        dao.update(password=hash_password(dao.id, password)).execute()
+        return dao  # this dao does not contain password property
 
     @classmethod
-    def verify_password(cls, uid, password):
-        return cls.get(cls.id == uid).password == hash_password(password)
+    def verification(cls, uid, password):
+        user = cls.get_user_by_uid(uid)
+        if not user:
+            return False
+        return user.password == hash_password(uid, password)
+
+    @classmethod
+    def get_user_by_uid(cls, uid):
+        return cls.get_or_none(cls.id == uid)
 
     @classmethod
     def _check_available_email(cls, email):
@@ -39,17 +46,16 @@ class UserAuthDAO(Model):
         try:
             cls.get(cls.email == email)
         except DoesNotExist:
-            return False
-        else:
             return True
+        else:
+            return False
 
     def update_email(self, email):
-        email = email.strip().lower()
         if self._check_available_email(email):
             return self.update(email=email)
-        raise EmailAlreadyUsed
+        raise EmailAlreadyUsed  # view layer receive this exception
 
     def update_password(self, old_password, new_password):
-        if self.password != hash_password(old_password):
-            raise InvalidPassword
-        return self.update(password=hash_password(new_password))
+        if self.password != hash_password(self.id, old_password):
+            raise InvalidPassword  # view layer receive this exception
+        return self.update(password=hash_password(self.id, new_password))

@@ -37,7 +37,7 @@ class TagDAO(Model):
 
     @classmethod
     def get_all_tags(cls):
-        """rtype list(namedtuple)"""
+        """@rtype list(namedtuple)"""
         return list(cls.select(cls.tag_text, fn.COUNT(cls.id).alias('n_tag')).group_by(cls.tag_hash).namedtuples())
 
     @classmethod
@@ -52,4 +52,4 @@ class TagDAO(Model):
         if not daos:
             return
         new_hash = get_hashed_value(tag_text)
-        map(lambda dao: dao.update(cls.tag_text=tag_text, cls.tag_hash=new_hash).execute(), daos)
+        map(lambda dao: dao.update(tag_text=tag_text, tag_hash=new_hash).execute(), daos)

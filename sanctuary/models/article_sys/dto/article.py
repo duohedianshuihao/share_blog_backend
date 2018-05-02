@@ -7,7 +7,7 @@ from schematics.types import IntType, DateTimeType, StringType
 from schematics.types.compound import ModelType, ListType
 from schematics.models import Model
 
-from arsenal.datetime_util import _datetime
+from arsenal.utils.datetime_util import _datetime
 
 
 class ContentDTO(Model):

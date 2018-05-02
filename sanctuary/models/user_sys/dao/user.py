@@ -2,10 +2,12 @@
 
 import datetime
 from peewee import Model, SmallIntegerField, CharField, DateTimeField, BigIntegerField, DoesNotExist
-from gear.config import mysql_db
-from arsenal.article.utils import get_hashed_value
+
 from sanctuary.models.user_sys.exception import UserAlreadyExist
 from sanctuary.models.user_sys.const import BITS_ADMIN
+
+from gear.config import mysql_db
+from arsenal.article.utils import get_hashed_value
 
 
 class UserDAO(Model):
@@ -25,14 +27,11 @@ class UserDAO(Model):
         name_hash = get_hashed_value(name)
         if cls._check_available_name(name_hash):
             return cls.create(name=name, name_hash=name_hash)
-        raise UserAlreadyExist
+        raise UserAlreadyExist  # view layer receive this exception
 
     @classmethod
-    def get_user(cls, name):
-        try:
-            return cls.get(cls.name == name)
-        except DoesNotExist:
-            return
+    def get_user_by_uid(cls, uid):
+        return cls.get_or_none(cls.id == uid)
 
     @classmethod
     def _check_available_name(cls, name_hash):
@@ -66,3 +65,9 @@ class UserDAO(Model):
 
     def set_role_admin(self):
         self.set_bit(BITS_ADMIN)
+
+    def is_user_admin(self):
+        return self.check_bit(BIT)
+
+    def revoke_role_admin(self):
+        self.clear_bit(BITS_ADMIN)

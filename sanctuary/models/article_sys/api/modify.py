@@ -14,7 +14,7 @@ from gear.config import mysql_db
 from arsenal.article.utils import get_hashed_value
 
 
-@mysql_db.atomic
+@mysql_db.atomic()
 def create_article(title, brief, detail, tags, categories, status=ArticleStatus.on_edit):
     article_dto = _new_article(title, brief, detail, status)
     tag_dtos = _new_tags(article_dto.id, tags)

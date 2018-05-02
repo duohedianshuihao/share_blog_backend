@@ -1,3 +1,5 @@
 # coding: utf-8
 
 BITS_ADMIN = 0b1
+
+USER_OFFSET = 100000000

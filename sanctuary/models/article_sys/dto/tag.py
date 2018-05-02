@@ -5,7 +5,7 @@ import datetime
 from schematics.types import IntType, DateTimeType, StringType
 from schematics.models import Model
 
-from arsenal.datetime_util import _datetime
+from arsenal.utils.datetime_util import _datetime
 
 
 class TagDTO(Model):
