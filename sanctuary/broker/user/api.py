@@ -1,7 +1,7 @@
 # coding: utf-8
 
 from sanctuary.models import user_sys
-from gear.config import mysql_db
+from gear.db_config import mysql_db
 
 
 @mysql_db.atomic()

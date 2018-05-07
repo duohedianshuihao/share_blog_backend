@@ -1,12 +1,19 @@
+# coding: utf-8
 import os
 
-from peewee import *
 
-
+SECRET_KEY = os.environ.get('_SECRET_KEY')
 DATABASE = os.environ.get('_DATABASE')
 USER = os.environ.get('_USER')
 PASSWD = os.environ.get('_PASSWORD')
 HOST = os.environ.get('_HOST')
-PORT = int(os.environ.get('_PORT'))
+DB_PORT = int(os.environ.get('_PORT'))
 
-mysql_db = MySQLDatabase(DATABASE, user=USER, password=PASSWD, host=HOST, port=PORT)
+TABLES = (
+    'article_tag',
+    'article_category',
+    'article',
+    'user',
+    'user_auth',
+    'user_uuid'
+)

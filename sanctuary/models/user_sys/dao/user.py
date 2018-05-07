@@ -6,7 +6,7 @@ from peewee import Model, SmallIntegerField, CharField, DateTimeField, BigIntege
 from sanctuary.models.user_sys.exception import UserAlreadyExist
 from sanctuary.models.user_sys.const import BITS_ADMIN
 
-from gear.config import mysql_db
+from gear.db_config import mysql_db
 from arsenal.article.utils import get_hashed_value
 
 

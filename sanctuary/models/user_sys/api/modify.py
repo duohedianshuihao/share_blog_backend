@@ -6,7 +6,7 @@ from ..dao.user_uuid import UserUuidDAO
 from ..dto.user import UserDTO
 from ..exception import UserNotExist
 
-from gear.config import mysql_db
+from gear.db_config import mysql_db
 
 
 @mysql_db.atomic()

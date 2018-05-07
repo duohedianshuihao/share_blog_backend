@@ -3,7 +3,7 @@
 import datetime
 
 from peewee import Model, BigIntegerField, SmallIntegerField, CharField, DateTimeField, fn
-from gear.config import mysql_db
+from gear.db_config import mysql_db
 from arsenal.article.utils import get_hashed_value
 
 

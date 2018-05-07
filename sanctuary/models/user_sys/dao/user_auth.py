@@ -4,7 +4,7 @@ import datetime
 from peewee import SmallIntegerField, CharField, DateTimeField, Model, DoesNotExist
 from arsenal.user.util import hash_password
 from sanctuary.models.user_sys.exception import EmailAlreadyUsed, InvalidPassword
-from gear.config import mysql_db
+from gear.db_config import mysql_db
 
 
 class UserAuthDAO(Model):

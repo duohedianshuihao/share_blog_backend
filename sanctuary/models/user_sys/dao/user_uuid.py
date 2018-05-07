@@ -5,7 +5,7 @@ from peewee import Model, SmallIntegerField, CharField, DateTimeField
 from base64 import urlsafe_b64decode, urlsafe_b64encode
 
 from sanctuary.models.user_sys.const import USER_OFFSET
-from gear.config import mysql_db
+from gear.db_config import mysql_db
 
 
 class UserUuidDAO(Model):

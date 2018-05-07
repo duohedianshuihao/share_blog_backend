@@ -10,7 +10,7 @@ from ..dto.category import CategoryDTO
 from ..const import ArticleStatus
 
 from ..api.query import _build_article_dto_by_dao
-from gear.config import mysql_db
+from gear.db_config import mysql_db
 from arsenal.article.utils import get_hashed_value
 
 

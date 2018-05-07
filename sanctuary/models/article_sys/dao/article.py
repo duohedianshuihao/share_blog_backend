@@ -3,7 +3,7 @@
 import datetime
 
 from peewee import Model, CharField, SmallIntegerField, DateTimeField, BlobField, IntegerField
-from gear.config import mysql_db
+from gear.db_config import mysql_db
 
 from ..const import ArticleStatus
 
