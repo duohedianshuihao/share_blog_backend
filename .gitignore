@@ -1,2 +1,4 @@
 sanctuary/table.sql
 .vscode/
+*.pyc
+test.py
