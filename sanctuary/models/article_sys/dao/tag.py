@@ -38,6 +38,7 @@ class TagDAO(Model):
     @classmethod
     def get_all_tags(cls):
         """@rtype list(namedtuple)"""
+        # note the ONLY_FULL_GROUP_BY should be remove from mysql to enable query below
         return list(cls.select(cls.tag_text, fn.COUNT(cls.id).alias('n_tag')).group_by(cls.tag_hash).namedtuples())
 
     @classmethod

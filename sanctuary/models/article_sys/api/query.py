@@ -46,22 +46,22 @@ def paged_all_articles(cursor, size):
     return [_build_article_dto_by_dao(dao) for dao in daos]
 
 
-def get_tag_all_articles(cls, tag_text):
+def get_tag_all_articles(tag_text):
     daos = TagDAO.get_tag_all_articles(tag_text)
     if not daos:
         return {}
     article_ids = [dao.article_id for dao in daos]
     article_d = batch_get_articles(article_ids)
-    return sorted(article_d.values(), key=lambda x: x.create_time, reverse=True)
+    return sorted(filter(None, article_d.values()), key=lambda x: x.create_time, reverse=True)  # filter unpublished articles
 
 
-def get_category_all_articles(cls, category_text):
-    daos = CategoryDAO.get_all_categories(category_text)
+def get_category_all_articles(category_text):
+    daos = CategoryDAO.get_category_all_articles(category_text)
     if not daos:
         return {}
     article_ids = [dao.article_id for dao in daos]
     article_d = batch_get_articles(article_ids)
-    return sorted(article_d.values(), key=lambda x: x.create_time, reverse=True)
+    return sorted(filter(None, article_d.values()), key=lambda x: x.create_time, reverse=True)
 
 
 get_all_tags = TagDAO.get_all_tags
